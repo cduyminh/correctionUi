@@ -1,7 +1,7 @@
 import { IStatus, IUpload } from "./type";
 
 export const ApiURL =
-	process.env.NODE_ENV === "production" ? "https://api.choga.company" : "http://localhost:8080";
+	process.env.NODE_ENV === "production" ? "https://www.api.choga.company" : "http://localhost:8080";
 
 export const Api = {
 	GetStatus: async (params: IStatus) => {
