@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tabler/icons": "^2.45.0",
+    "@tabler/icons-react": "^2.45.0",
     "i": "^0.3.7",
     "npm": "^10.2.5",
     "react": "^18.2.0",

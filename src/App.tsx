@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { useGetStatusUpdate, useUploadFile } from "./hooks";
+import { IconExclamationCircle } from "@tabler/icons-react";
 
 function App() {
 	const [emails, setEmails] = useState("");
@@ -11,6 +10,7 @@ function App() {
 	const fileInputRef = useRef<HTMLInputElement>(null); // Ref for the hidden file input
 	const { data: status } = useGetStatusUpdate({ emails: emails, filename: filename });
 	const { mutate: upload } = useUploadFile();
+	const [sent, setSent] = useState(false);
 
 	// Handle file drop
 	const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -40,6 +40,7 @@ function App() {
 	// Handle file upload
 	const handleUpload = () => {
 		if (file) {
+			setSent(true);
 			upload({ file, emails });
 		} else {
 			alert("Please drop a file to upload!");
@@ -47,42 +48,85 @@ function App() {
 	};
 	return (
 		<>
-			<div>
+			<div className="slam">
 				<a href="https://vitejs.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
+					<img
+						src={
+							"https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/RMIT_University_Logo.svg/2560px-RMIT_University_Logo.svg.png"
+						}
+						className="logo"
+						alt="Rmit logo"
+					/>
 				</a>
 			</div>
 
 			<div className="card">
-				<button>Status: {status}%</button>
-				<br />
-				<br />
-				<input placeholder="Emails" onChange={(e) => setEmails(e.target.value)}></input>
-				{/* File drop area */}
-
-				<div
-					onDrop={handleDrop}
-					onClick={handleFileSelect}
-					onDragOver={handleDragOver}
-					style={{ border: "2px dashed gray", padding: "20px", marginTop: "20px" }}
-				>
-					Drop a file here to update the filename
+				<div style={{ position: "relative" }} className="slam">
+					<label
+						style={{
+							position: "absolute",
+							left: 0,
+							display: "flex",
+							flexDirection: "row",
+							alignContent: "center",
+							gap: 4,
+						}}
+					>
+						Where do want to recieve your files?
+					</label>
+					<br />
+					<input
+						placeholder="Each email should be separated by a comma."
+						onChange={(e) => setEmails(e.target.value)}
+						style={{
+							padding: 20,
+							width: 300,
+							borderRadius: 5,
+							marginTop: 5,
+							border: "1px solid #ccc",
+							fontSize: 16,
+						}}
+					></input>
 				</div>
-				<input
-					type="file"
-					ref={fileInputRef}
-					onChange={(e) => e.target.files && handleFileChange(e.target.files[0])}
-					style={{ display: "none" }}
-				/>
-				{filename && <p>Uploaded file: {filename}</p>}
-
+				{/* File drop area */}
+				<div style={{ position: "relative", marginTop: "20px" }} className="slam">
+					<label
+						style={{
+							position: "absolute",
+							left: 0,
+							display: "flex",
+							flexDirection: "row",
+							alignContent: "center",
+							gap: 4,
+						}}
+					>
+						Drop a file you want to have fix.
+					</label>
+					<br />
+					<div
+						className="slam"
+						onDrop={handleDrop}
+						onClick={handleFileSelect}
+						onDragOver={handleDragOver}
+						style={{ border: "1px dashed #ccc", padding: "20px", marginTop: 5 }}
+					>
+						{filename ? <p>{filename}</p> : <p>Drop a file here</p>}
+					</div>
+					<input
+						type="file"
+						ref={fileInputRef}
+						onChange={(e) => e.target.files && handleFileChange(e.target.files[0])}
+						style={{ display: "none" }}
+					/>
+				</div>
 				{/* Upload button */}
-				<button onClick={handleUpload} style={{ marginTop: 40 }}>
-					Start Correction
-				</button>
+				{!sent ? (
+					<button onClick={handleUpload} style={{ marginTop: 40, padding: 20 }}>
+						Start Correction
+					</button>
+				) : (
+					<button>Status: {status}%</button>
+				)}
 			</div>
 		</>
 	);
