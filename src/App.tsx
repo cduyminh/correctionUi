@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import "./App.css";
 import { useGetStatusUpdate, useUploadFile } from "./hooks";
-import { IconExclamationCircle } from "@tabler/icons-react";
 
 function App() {
 	const [emails, setEmails] = useState("");
