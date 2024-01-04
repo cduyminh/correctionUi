@@ -124,7 +124,7 @@ function App() {
 						Start Correction
 					</button>
 				) : (
-					<button>Status: {status}%</button>
+					<button style={{ marginTop: 40, padding: 20 }}>Status: {status}%</button>
 				)}
 			</div>
 		</>
