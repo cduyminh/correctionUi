@@ -149,7 +149,7 @@ function App() {
 					>
 						Start Correction
 					</button>
-				) : complete ? (
+				) : !complete ? (
 					<button style={{ marginTop: 40, padding: 20 }}>Status: {status}%</button>
 				) : (
 					<button
