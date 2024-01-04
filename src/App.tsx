@@ -140,13 +140,29 @@ function App() {
 				</div>
 				{/* Upload button */}
 				{!sent ? (
-					<button onClick={handleUpload} style={{ marginTop: 40, padding: 20 }}>
+					<button
+						onClick={handleUpload}
+						style={{
+							marginTop: 40,
+							padding: 20,
+						}}
+					>
 						Start Correction
 					</button>
 				) : complete ? (
 					<button style={{ marginTop: 40, padding: 20 }}>Status: {status}%</button>
 				) : (
-					<button style={{ marginTop: 40, padding: 20 }}>Completed: Check your emails</button>
+					<button
+						style={{
+							marginTop: 40,
+							padding: 20,
+							background: "#5dd39e",
+							color: "white",
+							fontWeight: "bold",
+						}}
+					>
+						Completed: Check your emails
+					</button>
 				)}
 			</div>
 		</>
