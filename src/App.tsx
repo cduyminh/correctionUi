@@ -10,6 +10,7 @@ function App() {
 	const { data: status } = useGetStatusUpdate({ emails: emails, filename: filename });
 	const { mutate: upload } = useUploadFile();
 	const [sent, setSent] = useState(false);
+	const [complete, setComplete] = useState(false);
 
 	// Handle file drop
 	const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -52,6 +53,10 @@ function App() {
 				"We're only serving files under 500 words at the moment. If changes were made you must rename your file."
 			);
 			reset();
+		}
+
+		if (status === 100) {
+			setComplete(true);
 		}
 	}, [status]);
 
@@ -138,8 +143,10 @@ function App() {
 					<button onClick={handleUpload} style={{ marginTop: 40, padding: 20 }}>
 						Start Correction
 					</button>
-				) : (
+				) : complete ? (
 					<button style={{ marginTop: 40, padding: 20 }}>Status: {status}%</button>
+				) : (
+					<button style={{ marginTop: 40, padding: 20 }}>Completed: Check your emails</button>
 				)}
 			</div>
 		</>
