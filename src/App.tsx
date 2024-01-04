@@ -76,7 +76,7 @@ function App() {
 					</label>
 					<br />
 					<input
-						placeholder="Each email should be separated by a comma."
+						placeholder="Each email separated by a comma."
 						onChange={(e) => setEmails(e.target.value)}
 						style={{
 							padding: 20,
@@ -108,7 +108,7 @@ function App() {
 						onDrop={handleDrop}
 						onClick={handleFileSelect}
 						onDragOver={handleDragOver}
-						style={{ border: "1px dashed #ccc", padding: "20px", marginTop: 5 }}
+						style={{ border: "1px dashed #ccc", borderRadius: 5, padding: "20px", marginTop: 5 }}
 					>
 						{filename ? <p>{filename}</p> : <p>Drop a file here</p>}
 					</div>
