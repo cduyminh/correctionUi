@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { useGetStatusUpdate, useUploadFile } from "./hooks";
 
@@ -44,6 +44,21 @@ function App() {
 		} else {
 			alert("Please drop a file to upload!");
 		}
+	};
+
+	useEffect(() => {
+		if (status == -404) {
+			alert(
+				"We're only serving files under 500 words at the moment. If changes were made you must rename your file."
+			);
+			reset();
+		}
+	}, [status]);
+
+	const reset = () => {
+		setFile(null);
+		setFileName("");
+		setSent(false);
 	};
 	return (
 		<>
