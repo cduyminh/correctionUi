@@ -64,3 +64,52 @@
     opacity: 1;
   }
 }
+
+.react-grid-item.react-grid-placeholder {
+  background: red;
+  opacity: 0.2;
+  transition-duration: 100ms;
+  z-index: 2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.react-draggable-dragging {
+  transition: none !important;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.original-text,
+.corrected-text {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  height: auto;
+  /* Adjust based on content */
+  overflow-y: auto;
+  /* For scrollable content */
+}
+
+.original-text h2,
+.corrected-text h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Add more styles as per your design requirements */
